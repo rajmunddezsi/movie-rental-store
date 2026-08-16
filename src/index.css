@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@layer components {
+  .btn {
+    @apply border rounded-xl p-2 border-gray-300 hover:bg-gray-100 bg-gray-50 
+    hover:disabled:bg-gray-50 cursor-pointer disabled:cursor-default disabled:text-gray-300
+  }
+
+  .input-field {
+    @apply border p-2 px-3 border-gray-300 rounded-xl placeholder:text-gray-300 placeholder:italic w-full
+  }
+
+  .input-field.invalid {
+    @apply border-red-300 outline-red-300
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
