@@ -7,6 +7,18 @@ import { usePopularMovies } from "../features/movies/hooks/useMovies";
 const HomePage = () => {
   const { data, isLoading, isError, error } = usePopularMovies();
 
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <div>Please wait...</div>;
+  }
+
+  if (!data) {
+    return <div>No data available!</div>;
+  }
+
   const renderItem = (movie: Movie): ReactNode => {
     return (
       <div className="mb-5 bg-gray-100 p-5 rounded-2xl shadow-lg w-full">
@@ -37,17 +49,11 @@ const HomePage = () => {
         Your neighborhood movie rental, almost for free :)
       </h2>
       <div className="mt-10 flex flex-wrap gap-3 justify-evenly">
-        {isLoading ? (
-          <div>Please wait...</div>
-        ) : isError ? (
-          <div>{error.message}</div>
-        ) : (
-          <List
-            items={data.results}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-          />
-        )}
+        <List
+          items={data.results}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+        />
       </div>
     </div>
   );

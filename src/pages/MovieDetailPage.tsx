@@ -20,6 +20,10 @@ const MovieDetailPage = () => {
     return <div>Please wait...</div>;
   }
 
+  if (!data) {
+    return <div>No data available!</div>;
+  }
+
   return (
     <div>
       <div className="flex justify-between items-center">
