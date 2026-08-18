@@ -1,4 +1,23 @@
-Work-in-progress movie rental app built while transitioning to React/TypeScript. 
-Tech stack: React, TypeScript, Zustand, TanStack Query, Tailwind CSS.
+# Movie Rental Store
 
-Currently implementing: TanStack Query mutations 
+> Work-in-progress movie rental app built while transitioning to React/TypeScript.
+
+🔗 [Live demo](https://movie-rental-store-eta.vercel.app/)
+
+## Tech Stack
+
+- React + TypeScript
+- Zustand (client state)
+- TanStack Query (server state)
+- React Router v7
+- Tailwind CSS
+
+## Status
+
+Currently implementing: TanStack Query mutations
+
+## Upcoming
+
+- [ ] Better field validations
+- [ ] UI/UX improvements
+- [ ] Admin CRUD flow
