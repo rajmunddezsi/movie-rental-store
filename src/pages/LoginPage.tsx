@@ -102,7 +102,7 @@ const LoginPage = () => {
           )}
           <button
             disabled={!formIsValid || isLoading}
-            className="btn bg-blue-900 border-blue-600"
+            className="btn text-white bg-blue-900 border-blue-600"
           >
             {isLoading ? "Logging in..." : "Login"}
           </button>
