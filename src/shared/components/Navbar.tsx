@@ -18,7 +18,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="p-5 px-10 border-b border-gray-100">
+    <div
+      className="p-5 px-10 sticky top-0 bg-mist-800/40
+  backdrop-blur-lg
+  border-b
+  border-blue-950/30
+ text-white/90 z-50"
+    >
       <nav className="flex justify-between">
         <div className="flex gap-3">
           <Link to="/">Home</Link>
@@ -26,9 +32,11 @@ const Navbar = () => {
         </div>
         {username ? (
           <div className="flex gap-3">
-            <div className="capitalize">{username}</div>
+            <div className="capitalize hover:cursor-default">{username}</div>
             <div>|</div>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="hover:cursor-pointer" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         ) : (
           <Link to="/login">Login</Link>
