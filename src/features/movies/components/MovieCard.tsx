@@ -9,19 +9,20 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-  const { isFavorite, toggleFavorite } = useFavoriteStore(
+  const { favorites, toggleFavorite } = useFavoriteStore(
     useShallow((state) => ({
-      isFavorite: state.isFavorite(movie.id),
+      favorites: state.favorites,
       toggleFavorite: state.toggleFavorite,
     })),
   );
 
-  const isLoggedIn = useAuthStore((state) => state.user?.name);
+  const isFavorite = favorites.includes(movie.id);
+  const user = useAuthStore((state) => state.user?.name);
   const buttonLabel = isFavorite ? "Remove from favorites" : "Add to favorites";
   const cardStyle = {
     backgroundImage: `url(https://image.tmdb.org/t/p/w400${movie.poster_path})`,
-    border: isLoggedIn && isFavorite ? "1px solid #3e9dfb" : "",
-    boxShadow: isLoggedIn && isFavorite ? "inset 0 0 25px #3e9dfb" : "",
+    border: user && isFavorite ? "1px solid #3e9dfb" : "",
+    boxShadow: user && isFavorite ? "inset 0 0 25px #3e9dfb" : "",
   };
 
   return (
@@ -38,7 +39,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         </div>
       </div>
       <div className="absolute inset-0 bg-linear-to-t from-black from-15% via-transparent to-transparent rounded-2xl" />
-      {isLoggedIn && (
+      {user && (
         <button
           className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white hover:cursor-pointer"
           onClick={() => toggleFavorite(movie.id)}

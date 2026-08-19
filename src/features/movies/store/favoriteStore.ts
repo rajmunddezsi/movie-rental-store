@@ -3,13 +3,11 @@ import { persist } from "zustand/middleware";
 
 type FavoriteMovies = {
     favorites: number[];
-    isFavorite: (movieId: number) => boolean;
     toggleFavorite: (movieId: number) => void;
 }
 
-export const useFavoriteStore = create<FavoriteMovies>()(persist((set, get) => ({
+export const useFavoriteStore = create<FavoriteMovies>()(persist((set) => ({
     favorites: [],
-    isFavorite: (movieId: number) => get().favorites.includes(movieId),
     toggleFavorite: (movieId) => 
         set((state) => 
             ({
