@@ -5,7 +5,7 @@ const RootLayout = () => {
   return (
     <div className="bg-black h-max">
       <Navbar />
-      <div className="p-10 h-max">
+      <div className="h-max">
         <Outlet />
       </div>
     </div>

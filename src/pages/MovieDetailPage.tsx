@@ -25,22 +25,31 @@ const MovieDetailPage = () => {
   }
 
   return (
-    <div className="h-max">
-      <div className="flex justify-between items-center">
-        <h1 className="text-4xl">{data.title} Movie Detail Page</h1>
-        <button className="cursor-pointer" onClick={() => navigate("..")}>
-          Back
-        </button>
-      </div>
-      <h3 className="text-2xl mb-5">
-        {data.genres.map((g) => g.name).join(" | ")}
-      </h3>
-      <p className="text-lg text-justify mb-5">{data.overview}</p>
-      <div className="justify-center">
-        <img
-          src={`https://image.tmdb.org/t/p/w200${data.poster_path}`}
-          alt={`${data.title} poster`}
-        />
+    <div
+      className="h-[calc(100vh-65px)] w-full bg-cover bg-center relative"
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.poster_path})`,
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-black from-15% via-transparent to-transparent" />
+      <div className="relative z-10 text-white p-10">
+        <div className="flex justify-between items-center gap-3">
+          <h1 className="text-4xl">{data.title} Movie Detail Page</h1>
+          <button
+            className="cursor-pointer bg-blue-800 px-2.5 p-0.5 rounded-xl"
+            onClick={() => navigate("..")}
+          >
+            Back
+          </button>
+        </div>
+        <div className="text-sm mb-5 flex gap-2 mt-2">
+          {data.genres.map((g) => (
+            <span className="rounded-xl bg-blue-400 px-2.5 p-0.5" key={g.name}>
+              {g.name}
+            </span>
+          ))}
+        </div>
+        <p className="text-lg text-justify mb-5">{data.overview}</p>
       </div>
     </div>
   );
