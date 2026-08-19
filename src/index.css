@@ -7,7 +7,7 @@
   }
 
   .input-field {
-    @apply border p-2 px-3 border-gray-300 rounded-xl placeholder:text-gray-300 placeholder:italic w-full
+    @apply border p-2 px-3 border-gray-300 rounded-xl placeholder:text-gray-200 placeholder:italic w-full text-white
   }
 
   .input-field.invalid {
@@ -22,4 +22,6 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
+  height: 100%;
+  background-color: black;
 }

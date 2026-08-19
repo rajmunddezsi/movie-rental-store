@@ -25,7 +25,7 @@ const MovieDetailPage = () => {
   }
 
   return (
-    <div>
+    <div className="h-max">
       <div className="flex justify-between items-center">
         <h1 className="text-4xl">{data.title} Movie Detail Page</h1>
         <button className="cursor-pointer" onClick={() => navigate("..")}>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../features/auth/store/authStore";
 import { useShallow } from "zustand/shallow";
 import type { User } from "../features/auth/auth.types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -72,10 +72,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="p-10 h-screen flex justify-center items-center flex-col gap-5">
-      <h1 className="text-5xl">Movie Rental Login</h1>
+    <div className="p-10 h-screen flex justify-center items-center flex-col gap-8">
+      <h1 className="text-5xl text-white/90">Movie Rental Login</h1>
       <div className="w-md">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             name="email"
             value={form.email}
@@ -86,7 +86,7 @@ const LoginPage = () => {
             disabled={isLoading}
           />
           {invalidEmail && (
-            <div className="text-sm text-red-700 px-3">Email is invalid</div>
+            <div className="text-sm text-red-300 px-3">Email is invalid</div>
           )}
           <input
             name="password"
@@ -98,11 +98,17 @@ const LoginPage = () => {
             disabled={isLoading}
           />
           {invalidPassword && (
-            <div className="text-sm text-red-700 px-3">Password is invalid</div>
+            <div className="text-sm text-red-300 px-3">Password is invalid</div>
           )}
-          <button disabled={!formIsValid || isLoading} className="btn">
+          <button
+            disabled={!formIsValid || isLoading}
+            className="btn bg-blue-900 border-blue-600"
+          >
             {isLoading ? "Logging in..." : "Login"}
           </button>
+          <div className="text-center text-white/50">
+            <Link to="/">Back to Home</Link>
+          </div>
         </form>
       </div>
     </div>
