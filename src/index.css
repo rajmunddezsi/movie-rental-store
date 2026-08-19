@@ -24,3 +24,18 @@ body {
   font-family: system-ui, sans-serif;
   background-color: black;
 }
+
+.bg-light {
+  width: 300px;
+  height: 300px;
+  background: #152331;
+  background: -webkit-linear-gradient(to right, #5468f9a8, #6a0e6db3);
+  background: linear-gradient(to right, #5468f9a8, #6a0e6db3);
+  border-radius: 100%;
+  filter: blur(120px);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleX(2.5);
+  z-index: 1;
+  top: -10%;
+}

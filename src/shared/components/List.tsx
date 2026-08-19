@@ -18,8 +18,8 @@ const List = <T,>({
   return items.map((item) => (
     <div
       className="w-full
-        md:w-[calc(50%-0.5rem)]
-        xl:w-[calc(33.333%-0.667rem)]"
+        md:w-[calc(33.333%-0.5rem)]
+        xl:w-[calc(20%-0.667rem)]"
       key={keyExtractor(item)}
     >
       {renderItem(item)}

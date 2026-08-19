@@ -31,10 +31,13 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       className="mb-5 bg-gray-100 p-3 rounded-2xl shadow-lg w-full h-100 bg-cover bg-center relative"
     >
       <div className="z-10 relative shadow-md shadow-black/20 flex text-white rounded-3xl items-center justify-between mb-3 bg-black/30 p-3 backdrop-blur-lg">
-        <Link className="text-xl hover:text-blue-400" to={`/movie/${movie.id}`}>
+        <Link
+          className="text-md font-semibold hover:text-blue-400"
+          to={`/movie/${movie.id}`}
+        >
           {movie.title}
         </Link>
-        <div className="text-sm bg-blue-800 px-3 p-2 rounded-4xl font-bold">
+        <div className="text-xs bg-blue-800 px-3 p-2 rounded-4xl font-bold">
           {movie.vote_average}
         </div>
       </div>
