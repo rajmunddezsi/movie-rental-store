@@ -31,7 +31,7 @@ const MovieDetailPage = () => {
         backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.poster_path})`,
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black from-15% via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-black from-15% via-transparent to-transparent" />
       <div className="relative z-10 text-white p-10">
         <div className="flex justify-between items-center gap-3">
           <h1 className="text-4xl">{data.title} Movie Detail Page</h1>

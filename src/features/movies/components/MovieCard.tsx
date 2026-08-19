@@ -37,7 +37,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           {movie.vote_average}
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl" />
+      <div className="absolute inset-0 bg-linear-to-t from-black from-15% via-transparent to-transparent rounded-2xl" />
       {isLoggedIn && (
         <button
           className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white hover:cursor-pointer"
