@@ -28,7 +28,7 @@ const MovieDetailPage = () => {
     <div
       className="h-[calc(100vh-65px)] w-full bg-cover bg-center relative"
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.poster_path})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w1280${data.backdrop_path})`,
       }}
     >
       <div className="absolute inset-0 bg-linear-to-b from-black from-15% via-transparent to-transparent" />
