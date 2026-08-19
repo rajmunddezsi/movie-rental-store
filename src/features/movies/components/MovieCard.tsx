@@ -17,16 +17,16 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   );
 
   const isLoggedIn = useAuthStore((state) => state.user?.name);
-
   const buttonLabel = isFavorite ? "Remove from favorites" : "Add to favorites";
+  const cardStyle = {
+    backgroundImage: `url(https://image.tmdb.org/t/p/w400${movie.poster_path})`,
+    border: isLoggedIn && isFavorite ? "1px solid #3e9dfb" : "",
+    boxShadow: isLoggedIn && isFavorite ? "inset 0 0 25px #3e9dfb" : "",
+  };
 
   return (
     <div
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w400${movie.poster_path})`,
-        border: isFavorite ? "1px solid #3e9dfb" : "",
-        boxShadow: isFavorite ? "inset 0 0 25px #3e9dfb" : "",
-      }}
+      style={{ ...cardStyle }}
       className="mb-5 bg-gray-100 p-3 rounded-2xl shadow-lg w-full h-100 bg-cover bg-center relative"
     >
       <div className="z-10 relative shadow-md shadow-black/20 flex text-white rounded-3xl items-center justify-between mb-3 bg-black/30 p-3 backdrop-blur-lg">
