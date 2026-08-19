@@ -21,7 +21,7 @@ const Movies = () => {
   }
 
   if (topRatedMovies.isError) {
-    return <div>{popularMovies.error.message}</div>;
+    return <div>{topRatedMovies.error.message}</div>;
   }
 
   if (topRatedMovies.isLoading || popularMovies.isLoading) {
