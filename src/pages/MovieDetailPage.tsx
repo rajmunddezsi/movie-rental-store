@@ -3,7 +3,7 @@ import { useMovie } from "../features/movies/hooks/useMovies";
 import Rating from "../shared/components/Rating";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-async function rateMovie(movieId: number, rating: number): Promise<void> {
+async function rateMovie(): Promise<void> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.2) {
@@ -27,9 +27,8 @@ const MovieDetailPage = () => {
     mutate,
     isPending,
     isError: isMutationError,
-    error: mutationError,
   } = useMutation({
-    mutationFn: (rating: number) => rateMovie(normalizedId, rating),
+    mutationFn: rateMovie,
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["movie", normalizedId] });
     },

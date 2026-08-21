@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 type RatingProps = {
-  onMutate: (rating: number) => void;
+  onMutate: () => void;
   isPending: boolean;
 };
 
 const Rating = ({ onMutate, isPending }: RatingProps) => {
   const [rating, setRating] = useState(0);
 
-  const handleRating = (star) => {
+  const handleRating = (star: number) => {
     setRating(star);
-    onMutate(rating);
+    onMutate();
   };
 
   return (
