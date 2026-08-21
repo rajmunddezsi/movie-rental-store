@@ -21,8 +21,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   const buttonLabel = isFavorite ? "Remove from favorites" : "Add to favorites";
   const cardStyle = {
     backgroundImage: `url(https://image.tmdb.org/t/p/w780${movie.poster_path})`,
-    border: user && isFavorite ? "1px solid #3e9dfb" : "",
-    boxShadow: user && isFavorite ? "inset 0 0 25px #3e9dfb" : "",
+    boxShadow:
+      user && isFavorite
+        ? "rgb(0 187 255) 0px 0px 40px 25px inset, 0 0 0px 1px rgb(0 187 255)"
+        : "",
   };
 
   return (
@@ -44,7 +46,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       <div className="absolute inset-0 bg-linear-to-t from-black from-15% via-transparent to-transparent rounded-2xl" />
       {user && (
         <button
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white hover:cursor-pointer text-xs"
+          className="absolute bottom-3 w-full left-1/2 -translate-x-1/2 text-white hover:cursor-pointer text-xs"
           onClick={() => toggleFavorite(movie.id)}
         >
           {buttonLabel}
