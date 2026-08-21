@@ -19,10 +19,8 @@ const Navbar = () => {
 
   return (
     <div
-      className="p-5 px-10 sticky top-0 bg-mist-800/40
-  backdrop-blur-lg
-  border-b
-  border-blue-950/30
+      className="p-5 px-10 sticky top-0
+  backdrop-blur-xl
  text-white/90 z-50"
     >
       <nav className="flex justify-between">
