@@ -1,9 +1,21 @@
 import { useQueries } from "@tanstack/react-query";
 import List from "../../../shared/components/List";
 import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
-import type { ReactNode } from "react";
-import type { Movie } from "../movies.types";
+import type { JSX } from "react";
+import type { Movie, MovieResponse } from "../movies.types";
 import MovieCard from "./MovieCard";
+
+function isMovieResponse(data: unknown): data is MovieResponse {
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    "page" in data &&
+    "results" in data &&
+    "total_pages" in data &&
+    "total_results" in data &&
+    Array.isArray(data.results)
+  );
+}
 
 const Movies = () => {
   const [popularMovies, topRatedMovies] = useQueries({
@@ -32,8 +44,15 @@ const Movies = () => {
     return <div>No data available!</div>;
   }
 
-  const renderItem = (movie: Movie): ReactNode => <MovieCard movie={movie} />;
+  if (!isMovieResponse(topRatedMovies.data)) {
+    return <div>No data available!</div>;
+  }
 
+  if (!isMovieResponse(popularMovies.data)) {
+    return <div>No data available!</div>;
+  }
+
+  const renderItem = (movie: Movie): JSX.Element => <MovieCard movie={movie} />;
   const keyExtractor = (movie: Movie): string | number => movie.id;
 
   return (
