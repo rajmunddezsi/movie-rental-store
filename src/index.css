@@ -26,8 +26,8 @@ body {
 }
 
 .bg-light {
-  width: 300px;
-  height: 300px;
+  width: 40%;
+  height: 40%;
   background: #152331;
   background: -webkit-linear-gradient(to right, #5468f9a8, #6a0e6db3);
   background: linear-gradient(to right, #5468f9a8, #6a0e6db3);
@@ -39,3 +39,19 @@ body {
   z-index: 1;
   top: -10%;
 }
+
+.welcome-text h1 {
+  font-size: clamp(1.85rem, 4vw, 3rem);
+}
+
+.welcome-text h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+ }
+
+ .section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+ }
+
+ .form-container {
+  max-width: 500px;
+ }

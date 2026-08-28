@@ -73,8 +73,8 @@ const LoginPage = () => {
 
   return (
     <div className="p-10 h-screen flex justify-center items-center flex-col gap-8">
-      <h1 className="text-5xl text-white/90">Movie Rental Login</h1>
-      <div className="w-md">
+      <h1 className="text-5xl text-white/90 text-center">Movie Rental Login</h1>
+      <div className="form-container">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             name="email"

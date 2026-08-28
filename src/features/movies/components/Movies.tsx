@@ -57,7 +57,7 @@ const Movies = () => {
 
   return (
     <div className="mt-2 p-10 relative z-10">
-      <h3 className="text-4xl font-semibold text-white border-l-5 border-l-blue-800 pl-3">
+      <h3 className="section-title text-4xl font-semibold text-white border-l-5 border-l-blue-800 pl-3">
         Popular movies
       </h3>
       <div className="mt-10 flex flex-wrap gap-3 justify-start bg-blue-800/40 p-5 rounded-2xl">
@@ -68,7 +68,7 @@ const Movies = () => {
         />
       </div>
 
-      <h3 className="mt-10 text-4xl font-semibold text-white border-l-5 border-l-red-800 pl-3">
+      <h3 className="section-title mt-10 text-4xl font-semibold text-white border-l-5 border-l-red-800 pl-3">
         Top rated
       </h3>
       <div className="mt-10 flex flex-wrap gap-3 justify-start bg-red-800/40 p-5 rounded-2xl">
