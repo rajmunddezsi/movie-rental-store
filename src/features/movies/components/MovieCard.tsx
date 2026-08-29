@@ -30,7 +30,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div
       style={{ ...cardStyle }}
-      className="mb-5 bg-gray-100 p-3 rounded-2xl shadow-lg w-full h-100 bg-cover bg-center relative"
+      className="bg-gray-100 p-3 rounded-2xl shadow-lg w-full h-100 bg-cover bg-center relative"
     >
       <div className="z-10 relative shadow-md shadow-black/20 flex text-white rounded-3xl items-center justify-between mb-3 bg-black/30 p-3 backdrop-blur-lg">
         <Link

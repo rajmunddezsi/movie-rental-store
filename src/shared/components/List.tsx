@@ -16,12 +16,7 @@ const List = <T,>({
   if (items.length === 0) return <div>{emptyMessage ?? "No items."}</div>;
 
   return items.map((item) => (
-    <div
-      className="w-full
-        md:w-[calc(33.333%-0.5rem)]
-        xl:w-[calc(20%-0.667rem)]"
-      key={keyExtractor(item)}
-    >
+    <div key={keyExtractor(item)}>
       {renderItem(item)}
     </div>
   ));
