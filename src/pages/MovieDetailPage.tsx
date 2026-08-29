@@ -60,8 +60,10 @@ const MovieDetailPage = () => {
       <div className="absolute inset-0 bg-linear-to-b from-black from-15% via-transparent to-transparent" />
       <div className="relative z-10 text-white p-10">
         <div className="flex justify-between items-center gap-3">
-          <h1 className="text-4xl">{data.title} Movie Detail Page</h1>
-          <div className="flex gap-5 align-middle">
+          <h1 className="detail-title text-4xl flex-1">
+            {data.title} Movie Detail Page
+          </h1>
+          <div className="flex flex-1 gap-5 flex-wrap justify-end">
             <div>
               <Rating onMutate={mutate} isPending={isPending} />
               {isMutationError && (
