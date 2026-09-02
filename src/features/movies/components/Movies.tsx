@@ -1,9 +1,11 @@
 import { useQueries } from "@tanstack/react-query";
 import List from "../../../shared/components/List";
 import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
 import type { Movie, MovieResponse } from "../movies.types";
 import MovieCard from "./MovieCard";
+import SearchBar from "../../../shared/components/Searchbar";
+import useDebounce from "../../../shared/hooks/useDebounce";
 
 function isMovieResponse(data: unknown): data is MovieResponse {
   return (
@@ -18,6 +20,9 @@ function isMovieResponse(data: unknown): data is MovieResponse {
 }
 
 const Movies = () => {
+  const [moiveSearchTitle, setMovieSearchTitle] = useState("");
+  const debouncedSearchValue = useDebounce(moiveSearchTitle, 500);
+
   const [popularMovies, topRatedMovies] = useQueries({
     queries: [
       { queryKey: ["movies", "popular"], queryFn: () => fetchPopularMovies(1) },
@@ -55,6 +60,22 @@ const Movies = () => {
   const renderItem = (movie: Movie): JSX.Element => <MovieCard movie={movie} />;
   const keyExtractor = (movie: Movie): string | number => movie.id;
 
+  const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
+
+  const filteredPopularMovies = [...popularMovies.data.results].filter(
+    (movie) =>
+      movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
+        ? movie
+        : false,
+  );
+
+  const filteredTopRatedMovies = [...topRatedMovies.data.results].filter(
+    (movie) =>
+      movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
+        ? movie
+        : false,
+  );
+
   return (
     <div className="mt-2 p-10 relative z-10">
       <h3 className="section-title text-4xl font-semibold text-white border-l-5 border-l-blue-800 pl-3">
@@ -62,9 +83,10 @@ const Movies = () => {
       </h3>
       <div className="mt-10 bg-blue-800/40 p-5 rounded-2xl movie-list-grid-container">
         <List
-          items={popularMovies.data.results}
+          items={filteredPopularMovies}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
+          emptyMessage="No movies."
         />
       </div>
 
@@ -73,11 +95,13 @@ const Movies = () => {
       </h3>
       <div className="mt-10 bg-red-800/40 p-5 rounded-2xl movie-list-grid-container">
         <List
-          items={topRatedMovies.data.results}
+          items={filteredTopRatedMovies}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
+          emptyMessage="No movies."
         />
       </div>
+      <SearchBar onType={handleSearch} />
     </div>
   );
 };

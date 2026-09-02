@@ -65,3 +65,58 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 15px;
  }
+
+
+ .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+ }
+
+
+ .search-bar {
+  border-radius: 999px;
+  isolation: isolate;
+
+  position: fixed;
+    border-radius: 999px;
+    isolation: isolate;
+    bottom: 40px;
+    z-index: 99;
+    max-width: 320px;
+    width: calc(100% - 80px);
+    min-width: 200px;
+    box-shadow: inset 0 0px 15px 15px #2b7dff26, 0 2px 1px 0px #1982eb9e, 0 -1px 1px 0px #005a9e;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backdrop-filter: blur(4px) url(#glass-distortion) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  background: rgb(34 34 34 / 37%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: -1;
+}
+
+#search-bar-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+#search-bar-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
