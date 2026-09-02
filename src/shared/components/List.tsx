@@ -13,12 +13,15 @@ const List = <T,>({
   keyExtractor,
   emptyMessage,
 }: ListProps<T>) => {
-  if (items.length === 0) return <div>{emptyMessage ?? "No items."}</div>;
+  if (items.length === 0)
+    return (
+      <div className="text-center text-white">
+        {emptyMessage ?? "No items."}
+      </div>
+    );
 
   return items.map((item) => (
-    <div key={keyExtractor(item)}>
-      {renderItem(item)}
-    </div>
+    <div key={keyExtractor(item)}>{renderItem(item)}</div>
   ));
 };
 
