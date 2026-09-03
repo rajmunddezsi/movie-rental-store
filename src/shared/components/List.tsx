@@ -15,7 +15,7 @@ const List = <T,>({
 }: ListProps<T>) => {
   if (items.length === 0)
     return (
-      <div className="text-center text-white">
+      <div className="text-center text-white" style={{ gridColumn: "1 / -1" }}>
         {emptyMessage ?? "No items."}
       </div>
     );

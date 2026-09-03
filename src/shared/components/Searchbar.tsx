@@ -2,7 +2,13 @@ import type { ChangeEvent } from "react";
 
 const SearchBar = ({ onType }: { onType: (searchText: string) => void }) => {
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    onType(e.target.value);
+    const searchText = e.target.value.trim();
+
+    if (!searchText) {
+      return onType("");
+    }
+
+    onType(searchText);
   };
 
   return (

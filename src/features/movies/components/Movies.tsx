@@ -2,22 +2,11 @@ import { useQueries } from "@tanstack/react-query";
 import List from "../../../shared/components/List";
 import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
 import { useState, type JSX } from "react";
-import type { Movie, MovieResponse } from "../movies.types";
+import type { Movie } from "../movies.types";
 import MovieCard from "./MovieCard";
 import SearchBar from "../../../shared/components/Searchbar";
 import useDebounce from "../../../shared/hooks/useDebounce";
-
-function isMovieResponse(data: unknown): data is MovieResponse {
-  return (
-    typeof data === "object" &&
-    data !== null &&
-    "page" in data &&
-    "results" in data &&
-    "total_pages" in data &&
-    "total_results" in data &&
-    Array.isArray(data.results)
-  );
-}
+import useCombinedMoviesQuery from "../hooks/useCombinedMoviesQuery";
 
 const Movies = () => {
   const [movieSearchTitle, setMovieSearchTitle] = useState("");
@@ -33,43 +22,28 @@ const Movies = () => {
     ],
   });
 
-  if (popularMovies.isError) {
-    return <div>{popularMovies.error.message}</div>;
-  }
+  const { status, data, message } = useCombinedMoviesQuery(
+    popularMovies,
+    topRatedMovies,
+  );
 
-  if (topRatedMovies.isError) {
-    return <div>{topRatedMovies.error.message}</div>;
-  }
-
-  if (topRatedMovies.isLoading || popularMovies.isLoading) {
-    return <div>Please wait...</div>;
-  }
-
-  if (!topRatedMovies.data || !popularMovies.data) {
-    return <div>No data available!</div>;
-  }
-
-  if (!isMovieResponse(topRatedMovies.data)) {
-    return <div>No data available!</div>;
-  }
-
-  if (!isMovieResponse(popularMovies.data)) {
-    return <div>No data available!</div>;
-  }
+  if (status === "loading") return <div>Loading...</div>;
+  if (status === "error") return <div>Error: {message}</div>;
+  if (!data) return <div>{message}</div>;
 
   const renderItem = (movie: Movie): JSX.Element => <MovieCard movie={movie} />;
   const keyExtractor = (movie: Movie): string | number => movie.id;
 
   const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
 
-  const filteredPopularMovies = [...popularMovies.data.results].filter(
+  const filteredPopularMovies = [...data.popularMovies.results].filter(
     (movie) =>
       movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
         ? movie
         : false,
   );
 
-  const filteredTopRatedMovies = [...topRatedMovies.data.results].filter(
+  const filteredTopRatedMovies = [...data.topRatedMovies.results].filter(
     (movie) =>
       movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
         ? movie
