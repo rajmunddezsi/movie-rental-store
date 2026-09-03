@@ -20,8 +20,8 @@ function isMovieResponse(data: unknown): data is MovieResponse {
 }
 
 const Movies = () => {
-  const [moiveSearchTitle, setMovieSearchTitle] = useState("");
-  const debouncedSearchValue = useDebounce(moiveSearchTitle, 500);
+  const [movieSearchTitle, setMovieSearchTitle] = useState("");
+  const debouncedSearchValue = useDebounce(movieSearchTitle, 500);
 
   const [popularMovies, topRatedMovies] = useQueries({
     queries: [
