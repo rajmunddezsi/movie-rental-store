@@ -1,13 +1,17 @@
-import { useQueries } from "@tanstack/react-query";
-import List from "../../../shared/components/List";
-import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
 import { useState, type JSX } from "react";
-import type { Movie } from "../movies.types";
+import { useQueries } from "@tanstack/react-query";
+import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
+
+import filterByKey from "../../../shared/utils/filterByKey";
+import getMoviesQueryStatus from "../utils/getMoviesQueryStatus";
+
+import List from "../../../shared/components/List";
 import MovieCard from "./MovieCard";
 import SearchBar from "../../../shared/components/Searchbar";
-import useCombinedMoviesQuery from "../hooks/useCombinedMoviesQuery";
-import { useSearch } from "../../../shared/hooks/useSearch";
+
 import useDebounce from "../../../shared/hooks/useDebounce";
+
+import type { Movie } from "../movies.types";
 
 const Movies = () => {
   const [movieSearchTitle, setMovieSearchTitle] = useState("");
@@ -23,7 +27,7 @@ const Movies = () => {
     ],
   });
 
-  const { status, data, message } = useCombinedMoviesQuery(
+  const { status, data, message } = getMoviesQueryStatus(
     popularMovies,
     topRatedMovies,
   );
@@ -36,13 +40,13 @@ const Movies = () => {
   const keyExtractor = (movie: Movie): string | number => movie.id;
   const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
 
-  const filteredPopularMovies = useSearch(
+  const filteredPopularMovies = filterByKey(
     debouncedSearchValue,
     data.popularMovies.results,
     "title",
   );
 
-  const filteredTopRatedMovies = useSearch(
+  const filteredTopRatedMovies = filterByKey(
     debouncedSearchValue,
     data.topRatedMovies.results,
     "title",

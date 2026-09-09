@@ -13,7 +13,7 @@ function isMovieResponse(data: unknown): data is MovieResponse {
   );
 }
 
-interface CombinedMoviesQueryResult {
+interface MoviesQueryResult {
     status: 'loading' | 'error' | 'success',
     message?: string,
     data?: {
@@ -22,7 +22,7 @@ interface CombinedMoviesQueryResult {
     }
 }
 
-function useCombinedMoviesQuery(popularMovies: UseQueryResult<MovieResponse, Error>, topRatedMovies: UseQueryResult<MovieResponse, Error>): CombinedMoviesQueryResult {
+export default function getMoviesQueryStatus(popularMovies: UseQueryResult<MovieResponse, Error>, topRatedMovies: UseQueryResult<MovieResponse, Error>): MoviesQueryResult {
     if (popularMovies.isError) return {status: 'error', message: popularMovies.error.message};
 
     if (topRatedMovies.isError) return {status: 'error', message: topRatedMovies.error.message};
@@ -33,6 +33,3 @@ function useCombinedMoviesQuery(popularMovies: UseQueryResult<MovieResponse, Err
 
     return {status: 'success', data: {popularMovies: popularMovies.data, topRatedMovies: topRatedMovies.data}};
 }
-
-export default useCombinedMoviesQuery;
-
