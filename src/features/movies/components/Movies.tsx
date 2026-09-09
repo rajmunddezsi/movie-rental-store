@@ -34,18 +34,17 @@ const Movies = () => {
 
   const renderItem = (movie: Movie): JSX.Element => <MovieCard movie={movie} />;
   const keyExtractor = (movie: Movie): string | number => movie.id;
-
   const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
 
   const filteredPopularMovies = useSearch(
     debouncedSearchValue,
-    popularMovies.data.results,
+    data.popularMovies.results,
     "title",
   );
 
   const filteredTopRatedMovies = useSearch(
     debouncedSearchValue,
-    topRatedMovies.data.results,
+    data.topRatedMovies.results,
     "title",
   );
 
