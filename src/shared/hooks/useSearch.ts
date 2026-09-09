@@ -1,4 +1,4 @@
-export function useSearch<T extends Record<string, unknown>>(
+export function useSearch<T>(
     searchText: string = '', 
     data: T[],
     searchKey: keyof T
