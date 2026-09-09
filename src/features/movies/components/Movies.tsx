@@ -5,8 +5,9 @@ import { useState, type JSX } from "react";
 import type { Movie } from "../movies.types";
 import MovieCard from "./MovieCard";
 import SearchBar from "../../../shared/components/Searchbar";
-import useDebounce from "../../../shared/hooks/useDebounce";
 import useCombinedMoviesQuery from "../hooks/useCombinedMoviesQuery";
+import { useSearch } from "../../../shared/hooks/useSearch";
+import useDebounce from "../../../shared/hooks/useDebounce";
 
 const Movies = () => {
   const [movieSearchTitle, setMovieSearchTitle] = useState("");
@@ -36,18 +37,16 @@ const Movies = () => {
 
   const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
 
-  const filteredPopularMovies = [...data.popularMovies.results].filter(
-    (movie) =>
-      movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
-        ? movie
-        : false,
+  const filteredPopularMovies = useSearch(
+    debouncedSearchValue,
+    popularMovies.data.results,
+    "title",
   );
 
-  const filteredTopRatedMovies = [...data.topRatedMovies.results].filter(
-    (movie) =>
-      movie.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
-        ? movie
-        : false,
+  const filteredTopRatedMovies = useSearch(
+    debouncedSearchValue,
+    topRatedMovies.data.results,
+    "title",
   );
 
   return (
