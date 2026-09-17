@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react";
+import { useCallback, useState, type JSX } from "react";
 import { useQueries } from "@tanstack/react-query";
 import { fetchPopularMovies, fetchTopRatedMovies } from "../api/moviesApi";
 
@@ -15,7 +15,18 @@ import type { Movie } from "../movies.types";
 
 const Movies = () => {
   const [movieSearchTitle, setMovieSearchTitle] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const debouncedSearchValue = useDebounce(movieSearchTitle, 500);
+
+  const handleSearch = useCallback(
+    (searchText: string) => setMovieSearchTitle(searchText),
+    [],
+  );
+
+  const handleSelect = useCallback(
+    (genre: string) => setSelectedGenre(genre),
+    [],
+  );
 
   const [popularMovies, topRatedMovies] = useQueries({
     queries: [
@@ -38,18 +49,17 @@ const Movies = () => {
 
   const renderItem = (movie: Movie): JSX.Element => <MovieCard movie={movie} />;
   const keyExtractor = (movie: Movie): string | number => movie.id;
-  const handleSearch = (searchText: string) => setMovieSearchTitle(searchText);
 
   const filteredPopularMovies = filterByKey(
-    debouncedSearchValue,
+    [debouncedSearchValue, selectedGenre],
     data.popularMovies.results,
-    "title",
+    ["title", "genre_ids"],
   );
 
   const filteredTopRatedMovies = filterByKey(
-    debouncedSearchValue,
+    [debouncedSearchValue, selectedGenre],
     data.topRatedMovies.results,
-    "title",
+    ["title", "genre_ids"],
   );
 
   return (
@@ -77,7 +87,7 @@ const Movies = () => {
           emptyMessage="No movies."
         />
       </div>
-      <SearchBar onType={handleSearch} />
+      <SearchBar onType={handleSearch} onSelect={handleSelect} />
     </div>
   );
 };

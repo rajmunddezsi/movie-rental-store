@@ -10,7 +10,7 @@ export type Movie = {
 }
 
 export type MovieDetail = Movie & {
-    genres: {id: number; name: string}[];
+    genres: Genre[];
     runtime: number | null;
     tagline: string;
 }
@@ -21,3 +21,5 @@ export type MovieResponse = {
     total_pages: number;
     total_results: number;
 }
+
+export type Genre = {id: number; name: string};
