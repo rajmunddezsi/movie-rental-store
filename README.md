@@ -14,10 +14,16 @@
 
 ## Status
 
-Currently implementing: TanStack Query mutations
+Currently implementing: Admin CRUD flow
+
+## Completed
+- [x] Movie browsing with TMDB API
+- [x] Search and genre filtering  
+- [x] Authentication (mock)
+- [x] Favorites (Zustand + persist)
+- [x] TanStack Query with caching
 
 ## Upcoming
-
-- [ ] Better field validations
-- [ ] UI/UX improvements
 - [ ] Admin CRUD flow
+- [ ] React Hook Form + Zod validation
+- [ ] Deploy with real backend (Supabase)
