@@ -1,4 +1,4 @@
-import type { MovieDetail, MovieResponse } from "../movies.types";
+import type { Genre, MovieDetail, MovieResponse } from "../movies.types";
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -29,4 +29,14 @@ export async function fetchMovieById(id: number) {
     }
 
     return response.json() as Promise<MovieDetail>;
+}
+
+export async function fetchGenre() {
+    const respone = await fetch(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+
+    if (!respone.ok) {
+        throw new Error('Failed to fetch genre list!')
+    }
+
+    return respone.json() as Promise<{genres: Genre[]}>
 }

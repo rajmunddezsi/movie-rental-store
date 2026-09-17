@@ -1,14 +1,19 @@
 export default function filterByKey<T>(
-    searchText: string = '', 
+    searchText: string[] = [], 
     data: T[],
-    searchKey: keyof T
+    searchKey: (keyof T)[]
 ): T[] {
+    return data.filter((dataRow) => {
+        return searchText.every((text, index) => {
+            if (text) {
+                if (isNaN(+text)) {
+                    return (dataRow[searchKey[index]] as string).toLowerCase().includes(text.toLowerCase());
+                }
 
-    return data.filter((dataRow: T) => {
-        const value = dataRow[searchKey];
+                return (dataRow[searchKey[index]] as number[]).includes(+text);
+            }
 
-        if (typeof value !== 'string') return false;
-
-        return value.toLowerCase().includes(searchText.toLowerCase());
-    });
+            return true;
+        })
+    })
 }
